@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>COVID Tracker</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container-fluid my-3 mt-1">
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            COVID-19 Live
+        </a>
+    </div>
+</nav>
+<div class="card text-center shadow p-3 pb-2 mb-5 bg-body rounded">
+    <div class="card-header text-warning">
+        WARNING!
+    </div>
+    <div class="card-body">
+        <h1 class="card-title text-danger font-monospace" th:text="${totalCases}"/>
+               <p class="card-text text-danger">Total Case Count Around The Globe!</p>
+        <p class="card-text text-danger">+<span class="font-monospace fw-bold" th:text="${difference}"/> Cases Reported More Than Previous Day!</p>
+    </div>
+    <div class="card-footer text-success">
+        STAY HOME ! STAY SAFE!
+    </div>
+</div>
+
+<table class="table table-striped">
+    <tr>
+
+        <th class="bg-dark text-light">COUNTRY</th>
+        <th class="bg-dark text-light">STATE</th>
+        <th class="bg-dark text-light">TOTAL CASES</th>
+        <th class="bg-dark text-light text-end">DAILY CHANGE</th>
+    </tr>
+    <tr th:each="locationStat : ${locationStats}">
+        <td th:text="${locationStat.country}"></td>
+        <td th:text="${locationStat.state}">0</td>
+        <td th:text="${locationStat.totalCases}">0</td>
+        <td class="text-end" th:text="${locationStat.diff}"></td>
+    </tr>
+</table>
+</div>
+</body>
+
+</html>
