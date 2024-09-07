@@ -15,7 +15,7 @@ public class HomeController {
     @Autowired
     CovidDataServices covidDataServices;
 
-    @GetMapping("/")
+    @GetMapping("/tracker")
     public String home(Model model) {
         List<LocationStats> allStatsMod = covidDataServices.getAllStats();
         int totalCases = covidDataServices.getAllStats().stream().mapToInt(stat -> stat.getTotalCases()).sum();
@@ -28,6 +28,6 @@ public class HomeController {
         model.addAttribute("locationStats",allStatsMod);
         model.addAttribute("totalCases",fTotalCases );
         model.addAttribute("difference",fDiff );
-        return "home";
+        return "index.hmtl";
     }
 }
